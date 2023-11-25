@@ -14,7 +14,14 @@ export interface InputProps {
     containerStyles ? : string,
     placeholder ? : string,
     required ? : boolean,
-    value : string,
-    setData :(value:any) => void
+    value ? : string,
+    setData ? :(value:any) => void,
+    checked ?: boolean,
+    min? :any
 
+}
+
+export interface BodyProps {
+    item_name : string,
+    date : string
 }
