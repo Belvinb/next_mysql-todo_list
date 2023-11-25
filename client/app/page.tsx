@@ -10,9 +10,7 @@ import {
 import { io } from "socket.io-client";
 
 export default function Home() {
-  const socket = io("http://localhost:8800", {
-    withCredentials: true,
-  });
+
   const [data, setNewData] = useState({
     item_name: "",
     date: "",
@@ -20,6 +18,7 @@ export default function Home() {
 
   const [changed, setChanged] = useState(false);
   const [received, setReceived] = useState([]);
+  const [socket, setSocket] = useState<any>();
 
   useEffect(() => {
     async function fetchTodos() {
@@ -29,8 +28,22 @@ export default function Home() {
     fetchTodos();
   }, [changed]);
 
+  useEffect(() => {
+    const newSocket = io("http://localhost:8800", {
+      withCredentials: true,
+    }); 
+
+   
+    setSocket(newSocket);
+
+   
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
+
   //socket connection,
-  socket.on("todoChange", () => {
+  socket?.on("todoChange", () => {
     setChanged(!changed);
   });
 
