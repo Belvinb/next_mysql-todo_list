@@ -1,0 +1,20 @@
+version: '3'
+services:
+  to-do-server:
+    # image: to-do-server:1.2
+    build: .
+    ports:
+      - "8800:8800"
+    depends_on:
+      - mysql-container
+
+  mysql-container:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: to_do
+      MYSQL_ROOT_PASSWORD: C@t@p@ult1
+    volumes:
+      - ./Dump:/docker-entrypoint-initdb.d
+     
+    # volumes:
+    #   - ./mysql-data:/var/lib/mysql
