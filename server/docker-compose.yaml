@@ -12,7 +12,7 @@ services:
     image: mysql:latest
     environment:
       MYSQL_DATABASE: to_do
-      MYSQL_ROOT_PASSWORD: C@t@p@ult1
+      MYSQL_ROOT_PASSWORD: password
     volumes:
       - ./Dump:/docker-entrypoint-initdb.d
      

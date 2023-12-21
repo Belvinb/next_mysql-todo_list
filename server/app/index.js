@@ -25,7 +25,7 @@ dotenv.config();
 export const db = mysql.createPool({
   host: "mysql-container",
   user: "root",
-  password: "C@t@p@ult1",
+  password: process.env.MYSQLPWD,
   database: "to_do",
 });
 
